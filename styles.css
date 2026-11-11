@@ -1632,17 +1632,17 @@ textarea:focus {
   /* Keep trees hero background vivid and clearly visible on mobile */
   .hero-rose-img {
     opacity: 1;
-    object-position: 64% 40%;
+    object-position: 68% 35%;
   }
 
   .hero-gradient-overlay {
     background: linear-gradient(
       180deg,
-      rgba(245, 246, 243, 0.95) 0%,
-      rgba(245, 246, 243, 0.88) 40%,
-      rgba(245, 246, 243, 0.48) 58%,
-      rgba(245, 246, 243, 0.08) 76%,
-      rgba(13, 35, 23, 0.3) 100%
+      rgba(245, 246, 243, 0.88) 0%,
+      rgba(245, 246, 243, 0.76) 38%,
+      rgba(245, 246, 243, 0.34) 56%,
+      rgba(245, 246, 243, 0.04) 76%,
+      rgba(13, 35, 23, 0.26) 100%
     );
   }
 
@@ -1949,7 +1949,8 @@ textarea:focus {
   }
 
   .dock-text h2 {
-    font-size: 0.96rem;
+    font-size: 0.9rem;
+    line-height: 1.2;
   }
 
   .dock-text p {
