@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Aie Saheb Rose Nursery — Cultivating Roses for a Greener World</title>
-  <meta name="description" content="Aie Saheb Rose Nursery – your trusted source for premium roses, ornamental plants, and garden solutions for homes, landscapes, and institutions worldwide." />
+  <meta name="description" content="Aie Saheb Rose Nursery – your trusted source for premium roses, ornamental plants, fruit trees, and garden solutions for homes, landscapes, and institutions worldwide." />
   <link rel="icon" type="image/png" href="assets/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,23 +12,28 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- ======================== TOP ANNOUNCEMENT STRIP (D2C USP BAR) ======================== -->
+  <div class="announcement-bar" id="announcementBar">
+    <span data-i18n="announceText">Free Safe Delivery on Orders Above ₹999 &bull; Fresh Nursery-Direct Roses, Fruit &amp; Ornamental Trees &bull; Pan-India &amp; Global Export</span>
+  </div>
+
   <!-- ======================== HEADER / NAVIGATION ======================== -->
   <header class="site-header" id="siteHeader">
     <div class="header-inner">
       <a href="#home" class="brand" aria-label="Aie Saheb Rose Nursery Home">
         <img src="assets/logo.png" alt="Aie Saheb Rose Nursery Logo" class="brand-logo" />
         <span class="brand-text">
-          <span class="brand-name">Aie Saheb</span>
-          <span class="brand-sub">Rose Nursery</span>
+          <span class="brand-name" data-i18n="brandName">Aie Saheb</span>
+          <span class="brand-sub" data-i18n="brandSub">Rose Nursery</span>
         </span>
       </a>
 
       <nav class="main-nav" aria-label="Main Navigation">
-        <a href="#home" class="nav-link active">Home</a>
+        <a href="#home" class="nav-link active" data-i18n="navHome">Home</a>
 
         <div class="nav-dropdown">
           <button class="nav-link nav-dropdown-trigger" type="button" aria-expanded="false">
-            Plants
+            <span data-i18n="navPlants">Plants</span>
             <svg class="chevron-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -43,7 +48,7 @@
 
         <div class="nav-dropdown">
           <button class="nav-link nav-dropdown-trigger" type="button" aria-expanded="false">
-            Solutions
+            <span data-i18n="navSolutions">Solutions</span>
             <svg class="chevron-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
@@ -56,12 +61,19 @@
           </div>
         </div>
 
-        <a href="#about" class="nav-link">About</a>
-        <a href="#gallery" class="nav-link">Gallery</a>
-        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#about" class="nav-link" data-i18n="navAbout">About</a>
+        <a href="#gallery" class="nav-link" data-i18n="navGallery">Gallery</a>
+        <a href="#contact" class="nav-link" data-i18n="navContact">Contact</a>
       </nav>
 
       <div class="header-actions">
+        <!-- Language Switch (EN | मराठी) -->
+        <button class="lang-toggle-btn" id="langToggleBtn" type="button" aria-label="Switch language between English and Marathi">
+          <span class="lang-opt active" data-lang-opt="en">EN</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-opt" data-lang-opt="mr">मराठी</span>
+        </button>
+
         <button class="icon-btn" id="searchBtn" type="button" aria-label="Search plants">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="7.5"/>
@@ -79,7 +91,7 @@
         </button>
 
         <button class="btn-quote" id="headerQuoteBtn" type="button">
-          <span>Get a Quote</span>
+          <span data-i18n="getQuote">Get a Quote</span>
           <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
             <path d="M3.75 9H14.25M14.25 9L10.125 4.875M14.25 9L10.125 13.125" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
@@ -95,40 +107,53 @@
 
     <!-- Mobile Drawer -->
     <div class="mobile-nav-drawer" id="mobileNavDrawer">
-      <a href="#home">Home</a>
+      <a href="#home" data-i18n="navHome">Home</a>
       <a href="#plants" data-filter="all">All Plants</a>
       <a href="#plants" data-filter="roses">Rose Plants</a>
-      <a href="#solutions">Solutions</a>
-      <a href="#about">About</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#contact">Contact</a>
-      <button class="btn-quote mobile-quote" id="mobileQuoteBtn" type="button">Get a Quote &rarr;</button>
+      <a href="#solutions" data-i18n="navSolutions">Solutions</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#gallery" data-i18n="navGallery">Gallery</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+      <div class="mobile-drawer-footer">
+        <button class="btn-quote mobile-quote" id="mobileQuoteBtn" type="button">Get a Quote &rarr;</button>
+      </div>
     </div>
   </header>
 
   <!-- ======================== HERO SECTION ======================== -->
   <main id="home">
     <section class="hero-section">
-      <!-- Background Hero Artwork -->
-      <div class="hero-bg-media" aria-hidden="true">
+      <!-- Desktop Full-Bleed Hero Artwork (On Mobile, renders as a crisp framed 16:10 trees banner!) -->
+      <div class="hero-bg-media">
         <img src="assets/hero-trees.jpg" alt="Sunlit nursery trees including flowering crape myrtle, citrus oranges and lemons, pomegranates, and ornamental olive trees" class="hero-rose-img" />
-        <div class="hero-gradient-overlay"></div>
-        <div class="hero-orbital-arc"></div>
+        <div class="hero-gradient-overlay" aria-hidden="true"></div>
+        <div class="hero-orbital-arc" aria-hidden="true"></div>
+
+        <!-- Mobile-only Explore Pill anchored inside framed hero banner -->
+        <button class="hero-explore-mobile-badge" id="mobileExploreVideoBtn" type="button" aria-label="Explore Our Nursery Tour">
+          <span class="play-ring-sm">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M7.5 5.8L14.2 10L7.5 14.2V5.8Z" fill="currentColor"/>
+            </svg>
+          </span>
+          <span data-i18n="exploreNurseryInline">Explore Our Nursery</span>
+        </button>
       </div>
 
       <div class="hero-container">
         <div class="hero-content">
           <div class="hero-eyebrow">
-            <span>PREMIUM PLANT NURSERY</span>
+            <span data-i18n="heroEyebrow">PREMIUM PLANT NURSERY</span>
             <span class="eyebrow-line" aria-hidden="true"></span>
           </div>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" id="heroTitle">
             Cultivating <em class="rose-accent">Roses</em><br />
             for a Greener World
           </h1>
 
-          <p class="hero-subtitle">
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
             Aie Saheb Rose Nursery &ndash; your trusted source for premium roses, ornamental plants, and garden solutions for homes, landscapes, and institutions worldwide.
           </p>
 
@@ -137,7 +162,7 @@
               <svg class="btn-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                 <path d="M10 17V9.5M10 9.5C10 6.5 12.5 4 16 4C16 7.5 13.5 9.5 10 9.5ZM10 11.5C10 8.5 7.5 6 4 6C4 9.5 6.5 11.5 10 11.5Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              <span>Explore Our Plants</span>
+              <span data-i18n="explorePlants">Explore Our Plants</span>
               <svg class="arrow-icon" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M3.75 9H14.25M14.25 9L10.125 4.875M14.25 9L10.125 13.125" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
@@ -148,7 +173,7 @@
                 <circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="1.4"/>
                 <path d="M8.5 7.2L13 10L8.5 12.8V7.2Z" fill="currentColor"/>
               </svg>
-              <span>Watch Our Nursery</span>
+              <span data-i18n="watchNursery">Watch Our Nursery</span>
             </button>
           </div>
 
@@ -161,7 +186,7 @@
               </svg>
               <div class="trust-text">
                 <strong>500+</strong>
-                <span>Plant Varieties</span>
+                <span data-i18n="trustVarieties">Plant Varieties</span>
               </div>
             </div>
 
@@ -174,8 +199,8 @@
                 <path d="M10.5 17.2L9.5 23.5L14 21L18.5 23.5L17.5 17.2" stroke="#2D6A42" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
               <div class="trust-text">
-                <strong>High-Quality</strong>
-                <span>&amp; Disease-Free</span>
+                <strong data-i18n="trustQualityTitle">High-Quality</strong>
+                <span data-i18n="trustQualitySub">&amp; Disease-Free</span>
               </div>
             </div>
 
@@ -190,14 +215,14 @@
                 <path d="M2 12.5H6M2 15.5H4.5" stroke="#2D6A42" stroke-width="1.6" stroke-linecap="round"/>
               </svg>
               <div class="trust-text">
-                <strong>Safe &amp; Global</strong>
-                <span>Delivery</span>
+                <strong data-i18n="trustDeliveryTitle">Safe &amp; Global</strong>
+                <span data-i18n="trustDeliverySub">Delivery</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Floating Right Video Trigger -->
+        <!-- Desktop Floating Right Video Trigger -->
         <button class="hero-explore-trigger" id="heroExploreVideoBtn" type="button" aria-label="Explore Our Nursery Video">
           <span class="play-ring">
             <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -224,8 +249,8 @@
                 <path d="M16 16C13.8 16 12.3 14.4 12.3 12.4C12.3 10.6 13.7 9.2 15.6 9.2C17.3 9.2 18.5 10.4 18.5 11.9C18.5 13.2 17.4 14.1 16.2 14.1C15.1 14.1 14.4 13.3 14.4 12.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
               <div class="dock-text">
-                <h2>Rose Plants</h2>
-                <p>Hybrid, Desi &amp; Rare Varieties</p>
+                <h2 data-i18n="catRoses">Rose Plants</h2>
+                <p data-i18n="catRosesSub">Hybrid, Desi &amp; Rare Varieties</p>
               </div>
             </div>
             <span class="dock-arrow" aria-hidden="true">
@@ -243,8 +268,8 @@
                 <path d="M16 19V11.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
               </svg>
               <div class="dock-text">
-                <h2>Flowering Plants</h2>
-                <p>Seasonal &amp; Year-Round Blooms</p>
+                <h2 data-i18n="catFlowering">Flowering Plants</h2>
+                <p data-i18n="catFloweringSub">Seasonal &amp; Year-Round Blooms</p>
               </div>
             </div>
             <span class="dock-arrow" aria-hidden="true">
@@ -261,8 +286,8 @@
                 <path d="M8 24C12 19.5 16 15.5 21 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
               </svg>
               <div class="dock-text">
-                <h2>Ornamental Plants</h2>
-                <p>Perfect for Homes &amp; Landscapes</p>
+                <h2 data-i18n="catOrnamental">Ornamental Plants</h2>
+                <p data-i18n="catOrnamentalSub">Perfect for Homes &amp; Landscapes</p>
               </div>
             </div>
             <span class="dock-arrow" aria-hidden="true">
@@ -280,8 +305,8 @@
                 <path d="M11 20C8.2 20 6 17.8 6 15C6 12.8 7.5 10.9 9.5 10.3C10.3 7.5 12.9 5.5 16 5.5C19.1 5.5 21.7 7.5 22.5 10.3C24.5 10.9 26 12.8 26 15C26 17.8 23.8 20 21 20H11Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
               </svg>
               <div class="dock-text">
-                <h2>Fruit Plants</h2>
-                <p>Grow Fresh &amp; Naturally</p>
+                <h2 data-i18n="catFruit">Fruit Plants</h2>
+                <p data-i18n="catFruitSub">Grow Fresh &amp; Naturally</p>
               </div>
             </div>
             <span class="dock-arrow" aria-hidden="true">
@@ -294,26 +319,65 @@
       </div>
     </section>
 
+    <!-- ======================== UGAOO-STYLE VISUAL STORY CATEGORY STRIP ======================== -->
+    <section class="story-strip-section" aria-label="Quick Collections">
+      <div class="section-container">
+        <div class="story-strip">
+          <button class="story-chip" type="button" data-story-filter="all">
+            <span class="story-thumb"><img src="assets/hero-trees.jpg" alt="All Plants" /></span>
+            <span>Bestsellers</span>
+          </button>
+          <button class="story-chip" type="button" data-story-filter="roses">
+            <span class="story-thumb"><img src="assets/hero-rose.jpg" alt="Rose Plants" /></span>
+            <span>Fragrant Roses</span>
+          </button>
+          <button class="story-chip" type="button" data-story-filter="flowering">
+            <span class="story-thumb"><img src="assets/cat-flowering.jpg" alt="Flowering Blooms" /></span>
+            <span>Sun Blooms</span>
+          </button>
+          <button class="story-chip" type="button" data-story-filter="ornamental">
+            <span class="story-thumb"><img src="assets/cat-ornamental.jpg" alt="Indoor Foliage" /></span>
+            <span>Air Purifying</span>
+          </button>
+          <button class="story-chip" type="button" data-story-filter="fruit">
+            <span class="story-thumb"><img src="assets/cat-fruit.jpg" alt="Fruit Trees" /></span>
+            <span>Grafted Fruits</span>
+          </button>
+          <button class="story-chip" type="button" id="storyBulkBtn">
+            <span class="story-thumb"><img src="assets/cat-roses.jpg" alt="Landscape &amp; Gifting" /></span>
+            <span>Bulk &amp; Gifting</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
     <!-- ======================== FEATURED PLANTS CATALOG ======================== -->
     <section class="catalog-section" id="plants">
       <div class="section-container">
         <div class="section-header-row">
           <div>
-            <div class="section-eyebrow">OUR COLLECTION</div>
-            <h2 class="section-title">Curated Nursery <em>Varieties</em></h2>
-            <p class="section-desc">Cultivated with organic soil nutrition, rigorous disease screening, and careful root acclimatization for effortless transplanting.</p>
+            <div class="section-eyebrow" data-i18n="catalogEyebrow">OUR COLLECTION</div>
+            <h2 class="section-title" id="catalogTitle">Curated Nursery <em>Varieties</em></h2>
+            <p class="section-desc" data-i18n="catalogDesc">Tap any plant for care instructions, sunlight tips, and pot sizes. Cultivated organically with zero pest pressure.</p>
           </div>
-          <div class="filter-pills" role="tablist" aria-label="Filter plant varieties">
-            <button class="filter-pill active" data-filter="all" type="button">All Varieties</button>
-            <button class="filter-pill" data-filter="roses" type="button">Rose Plants</button>
-            <button class="filter-pill" data-filter="flowering" type="button">Flowering</button>
-            <button class="filter-pill" data-filter="ornamental" type="button">Ornamental</button>
-            <button class="filter-pill" data-filter="fruit" type="button">Fruit Plants</button>
+
+          <div class="catalog-controls-right">
+            <div class="currency-toggle" role="group" aria-label="Currency selector">
+              <button type="button" class="curr-btn active" data-currency="INR">₹ INR</button>
+              <button type="button" class="curr-btn" data-currency="USD">$ USD</button>
+            </div>
+            <div class="filter-pills" role="tablist" aria-label="Filter plant varieties">
+              <button class="filter-pill active" data-filter="all" type="button">All Varieties</button>
+              <button class="filter-pill" data-filter="roses" type="button">Rose Plants</button>
+              <button class="filter-pill" data-filter="flowering" type="button">Flowering</button>
+              <button class="filter-pill" data-filter="ornamental" type="button">Ornamental</button>
+              <button class="filter-pill" data-filter="fruit" type="button">Fruit Plants</button>
+            </div>
           </div>
         </div>
 
         <div class="mobile-swipe-hint" aria-hidden="true">
-          <span>Swipe varieties</span>
+          <span>Swipe varieties &bull; Tap for care guide</span>
           <span>&rarr;</span>
         </div>
         <div class="plants-grid" id="plantsGrid">
@@ -326,9 +390,9 @@
     <section class="solutions-section" id="solutions">
       <div class="section-container">
         <div class="section-center-header">
-          <div class="section-eyebrow">GARDEN &amp; LANDSCAPE SOLUTIONS</div>
-          <h2 class="section-title">Tailored Botanical <em>Services</em></h2>
-          <p class="section-desc">From intimate balcony rose gardens to multi-acre institutional estates and international nursery consignments.</p>
+          <div class="section-eyebrow" data-i18n="solutionsEyebrow">GARDEN &amp; LANDSCAPE SOLUTIONS</div>
+          <h2 class="section-title" id="solutionsTitle">Tailored Botanical <em>Services</em></h2>
+          <p class="section-desc" data-i18n="solutionsDesc">From intimate balcony rose gardens to multi-acre institutional estates and international nursery consignments.</p>
         </div>
 
         <div class="mobile-swipe-hint" aria-hidden="true">
@@ -367,6 +431,64 @@
       </div>
     </section>
 
+    <!-- ======================== CLIENT TESTIMONIALS & TRUST STRIP ======================== -->
+    <section class="reviews-section" id="reviews">
+      <div class="section-container">
+        <div class="section-header-row">
+          <div>
+            <div class="section-eyebrow" data-i18n="reviewsEyebrow">TRUSTED BY 120+ HOMES, RESORTS &amp; INSTITUTIONS</div>
+            <h2 class="section-title" id="reviewsTitle">Loved by <em>Plant Parents</em> &amp; Landscapers</h2>
+          </div>
+          <div class="rating-summary-pill">
+            <strong>4.9 ★</strong>
+            <span>2,400+ Healthy Deliveries</span>
+          </div>
+        </div>
+
+        <div class="mobile-swipe-hint" aria-hidden="true">
+          <span>Swipe reviews</span>
+          <span>&rarr;</span>
+        </div>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Ordered 25 grafted Desi Gulab and Crimson Hybrid roses for our Pune bungalow garden. Every root-ball arrived moist, pest-free, and bloomed within 3 weeks."</p>
+            <div class="review-author">
+              <span class="author-avatar">PK</span>
+              <div>
+                <strong>Pallavi Kulkarni</strong>
+                <span>Home Gardener, Pune</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Aie Saheb Rose Nursery supplied 400+ uniform ornamental trees and flowering shrubs for our resort courtyard. Zero transit loss and expert planting support."</p>
+            <div class="review-author">
+              <span class="author-avatar">RD</span>
+              <div>
+                <strong>Rohan Deshmukh</strong>
+                <span>Landscape Architect, Mahabaleshwar</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <div class="review-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="review-quote">"Their grafted citrus and pomegranate saplings are truly vigorous. The WhatsApp care schedule after delivery made orchard setup effortless."</p>
+            <div class="review-author">
+              <span class="author-avatar">SP</span>
+              <div>
+                <strong>Sandeep Patil</strong>
+                <span>Farm &amp; Orchard Owner, Nashik</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- ======================== ABOUT / HERITAGE SECTION ======================== -->
     <section class="about-section" id="about">
       <div class="section-container about-grid">
@@ -381,8 +503,8 @@
         </div>
 
         <div class="about-content">
-          <div class="section-eyebrow">OUR HERITAGE &amp; STANDARDS</div>
-          <h2 class="section-title">Rooted in Craft, <em>Grown for Longevity</em></h2>
+          <div class="section-eyebrow" data-i18n="aboutEyebrow">OUR HERITAGE &amp; STANDARDS</div>
+          <h2 class="section-title" id="aboutTitle">Rooted in Craft, <em>Grown for Longevity</em></h2>
           <p class="about-lead">
             At Aie Saheb Rose Nursery, every plant begins with vigorous rootstock, heirloom grafting expertise, and regenerative soil biology.
           </p>
@@ -422,8 +544,8 @@
       <div class="section-container">
         <div class="section-header-row">
           <div>
-            <div class="section-eyebrow">GREENHOUSE &amp; FIELD GALLERY</div>
-            <h2 class="section-title">Inside <em>Aie Saheb</em> Nursery</h2>
+            <div class="section-eyebrow" data-i18n="galleryEyebrow">GREENHOUSE &amp; FIELD GALLERY</div>
+            <h2 class="section-title" id="galleryTitle">Inside <em>Aie Saheb</em> Nursery</h2>
           </div>
           <p class="section-desc">A glimpse across our rose propagation beds, flowering shade houses, ornamental collections, and organic fruit orchards.</p>
         </div>
@@ -457,8 +579,8 @@
     <section class="contact-section" id="contact">
       <div class="section-container contact-grid">
         <div class="contact-info">
-          <div class="section-eyebrow">VISIT OR CONNECT</div>
-          <h2 class="section-title">Bring Living Beauty <em>Home</em></h2>
+          <div class="section-eyebrow" data-i18n="contactEyebrow">VISIT OR CONNECT</div>
+          <h2 class="section-title" id="contactTitle">Bring Living Beauty <em>Home</em></h2>
           <p class="section-desc">Have a specific cultivar list or landscape blueprint? Our nursery team responds to retail and wholesale inquiries within 24 hours.</p>
 
           <div class="contact-details">
@@ -524,6 +646,7 @@
         <a href="#home">Home</a>
         <a href="#plants">Plants</a>
         <a href="#solutions">Solutions</a>
+        <a href="#reviews">Reviews</a>
         <a href="#about">About</a>
         <a href="#gallery">Gallery</a>
         <a href="#contact">Contact</a>
@@ -532,7 +655,75 @@
     </div>
   </footer>
 
+  <!-- ======================== FLOATING WHATSAPP QUICK ORDER BUTTON ======================== -->
+  <a
+    href="https://wa.me/919820045120?text=Hello%20Aie%20Saheb%20Rose%20Nursery!%20I%20would%20like%20to%20inquire%20about%20your%20plants."
+    target="_blank"
+    rel="noopener noreferrer"
+    class="whatsapp-float-btn"
+    aria-label="Chat and order on WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.04 14.69 2 12.04 2ZM17.78 16.08C17.54 16.76 16.38 17.38 15.83 17.46C15.33 17.53 14.7 17.56 14 17.34C13.57 17.2 13.02 17.02 12.31 16.71C9.34 15.43 7.4 12.44 7.25 12.24C7.1 12.05 6.04 10.63 6.04 9.17C6.04 7.71 6.81 6.99 7.08 6.69C7.35 6.39 7.67 6.32 7.87 6.32C8.07 6.32 8.27 6.32 8.44 6.33C8.62 6.34 8.87 6.26 9.11 6.84C9.36 7.44 9.95 8.9 10.02 9.05C10.1 9.2 10.15 9.38 10.05 9.57C9.95 9.77 9.9 9.89 9.75 10.07C9.6 10.24 9.44 10.46 9.3 10.59C9.15 10.74 9 10.9 9.17 11.2C9.35 11.5 9.95 12.49 10.84 13.28C11.99 14.31 12.96 14.63 13.26 14.78C13.56 14.93 13.73 14.9 13.91 14.7C14.08 14.5 14.67 13.81 14.87 13.51C15.07 13.21 15.27 13.26 15.54 13.36C15.81 13.46 17.27 14.18 17.57 14.33C17.87 14.48 18.06 14.55 18.14 14.68C18.21 14.8 18.21 15.4 17.78 16.08Z"/>
+    </svg>
+    <span>WhatsApp Order</span>
+  </a>
+
   <!-- ======================== MODALS & DRAWERS ======================== -->
+  <!-- Plant Quick-View & Care Modal -->
+  <div class="modal-backdrop" id="plantModal" hidden>
+    <div class="modal-panel plant-detail-modal" role="dialog" aria-modal="true" aria-labelledby="plantModalTitle">
+      <button class="modal-close floating-modal-close" data-close-modal="plantModal" type="button" aria-label="Close plant details">&times;</button>
+      <div class="plant-detail-grid">
+        <div class="plant-detail-media">
+          <img id="qvImage" src="assets/cat-roses.jpg" alt="" />
+          <span class="plant-tag" id="qvTag">Signature Bloom</span>
+        </div>
+        <div class="plant-detail-body">
+          <span class="plant-category-label" id="qvCategory">Rose Plants</span>
+          <h3 id="qvTitle">Crimson Royal Hybrid Rose</h3>
+          <div class="qv-rating" id="qvRating">★ 4.9 (128 verified plant parents)</div>
+          <p class="qv-desc" id="qvDesc"></p>
+
+          <div class="qv-care-grid">
+            <div class="qv-care-box">
+              <small>Sunlight</small>
+              <strong id="qvSun">Full Sun (5–6 hrs)</strong>
+            </div>
+            <div class="qv-care-box">
+              <small>Watering</small>
+              <strong id="qvWater">Every 2 Days</strong>
+            </div>
+            <div class="qv-care-box">
+              <small>Season</small>
+              <strong id="qvSeason">Year-Round</strong>
+            </div>
+            <div class="qv-care-box">
+              <small>Height</small>
+              <strong id="qvHeight">2.5 – 4 ft</strong>
+            </div>
+          </div>
+
+          <div class="qv-size-block">
+            <span class="qv-size-label">Select Pot / Bag Size:</span>
+            <div class="qv-size-options" id="qvSizeOptions"></div>
+          </div>
+
+          <div class="qv-price-row">
+            <div>
+              <strong class="qv-price" id="qvPrice">₹299</strong>
+              <del class="qv-mrp" id="qvMrp">₹399</del>
+            </div>
+            <div class="qv-action-btns">
+              <button class="btn-primary-pill" id="qvAddCartBtn" type="button">+ Add to Basket</button>
+              <a class="btn-whatsapp-pill" id="qvWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Search Modal -->
   <div class="modal-backdrop" id="searchModal" hidden>
     <div class="modal-panel search-modal-panel" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
@@ -558,9 +749,12 @@
       <div class="cart-footer" id="cartFooter">
         <div class="cart-total-row">
           <span>Estimated Total</span>
-          <strong id="cartTotal">$0.00</strong>
+          <strong id="cartTotal">₹0</strong>
         </div>
-        <button class="btn-primary-pill full-width" id="checkoutQuoteBtn" type="button">Request Order / Quote &rarr;</button>
+        <div class="cart-footer-actions">
+          <a class="btn-whatsapp-pill full-width" id="cartWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer">Order via WhatsApp &rarr;</a>
+          <button class="btn-primary-pill full-width" id="checkoutQuoteBtn" type="button">Request Formal Quote &rarr;</button>
+        </div>
       </div>
     </aside>
   </div>
