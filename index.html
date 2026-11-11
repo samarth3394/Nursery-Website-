@@ -124,9 +124,12 @@
   <!-- ======================== HERO SECTION ======================== -->
   <main id="home">
     <section class="hero-section">
-      <!-- Desktop Full-Bleed Hero Artwork (On Mobile, renders as a crisp framed 16:10 trees banner!) -->
+      <!-- Desktop Full-Bleed Hero Artwork (On Mobile, renders sharp 16:11 edge-to-edge trees banner!) -->
       <div class="hero-bg-media">
-        <img src="assets/hero-trees.jpg" alt="Sunlit nursery trees including flowering crape myrtle, citrus oranges and lemons, pomegranates, and ornamental olive trees" class="hero-rose-img" />
+        <picture>
+          <source media="(max-width: 880px)" srcset="assets/hero-trees-mobile.jpg" />
+          <img src="assets/hero-trees.jpg" alt="Sunlit nursery trees including flowering crape myrtle, citrus oranges and lemons, pomegranates, and ornamental olive trees" class="hero-rose-img" />
+        </picture>
         <div class="hero-gradient-overlay" aria-hidden="true"></div>
         <div class="hero-orbital-arc" aria-hidden="true"></div>
 
@@ -324,11 +327,11 @@
       <div class="section-container">
         <div class="story-strip">
           <button class="story-chip" type="button" data-story-filter="all">
-            <span class="story-thumb"><img src="assets/hero-trees.jpg" alt="All Plants" /></span>
+            <span class="story-thumb"><img src="assets/hero-trees-mobile.jpg" alt="All Plants" /></span>
             <span>Bestsellers</span>
           </button>
           <button class="story-chip" type="button" data-story-filter="roses">
-            <span class="story-thumb"><img src="assets/hero-rose.jpg" alt="Rose Plants" /></span>
+            <span class="story-thumb"><img src="assets/cat-roses.jpg" alt="Rose Plants" /></span>
             <span>Fragrant Roses</span>
           </button>
           <button class="story-chip" type="button" data-story-filter="flowering">
