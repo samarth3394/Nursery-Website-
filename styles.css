@@ -38,6 +38,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -1573,6 +1574,10 @@ textarea:focus {
   color: var(--forest-900);
 }
 
+.mobile-swipe-hint {
+  display: none;
+}
+
 /* ==========================================================================
    RESPONSIVE BREAKPOINTS
    ========================================================================== */
@@ -1620,16 +1625,25 @@ textarea:focus {
   }
 
   .hero-section {
-    min-height: auto;
+    min-height: 100svh;
+    padding-top: 76px;
   }
 
+  /* Keep trees hero background vivid and clearly visible on mobile */
   .hero-rose-img {
-    object-position: 65% 25%;
-    opacity: 0.36;
+    opacity: 1;
+    object-position: 64% 40%;
   }
 
   .hero-gradient-overlay {
-    background: linear-gradient(180deg, rgba(245, 246, 243, 0.86) 0%, rgba(245, 246, 243, 0.94) 65%, rgba(245, 246, 243, 0.88) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(245, 246, 243, 0.95) 0%,
+      rgba(245, 246, 243, 0.88) 40%,
+      rgba(245, 246, 243, 0.48) 58%,
+      rgba(245, 246, 243, 0.08) 76%,
+      rgba(13, 35, 23, 0.3) 100%
+    );
   }
 
   .hero-orbital-arc {
@@ -1639,66 +1653,356 @@ textarea:focus {
   .hero-container {
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
-    padding: 28px 22px 28px;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px 22px 24px;
   }
 
+  /* Leave clear open window at lower hero so trees shine behind play trigger */
   .hero-explore-trigger {
-    align-self: flex-start;
-    background: none;
-    backdrop-filter: none;
-    padding: 8px 14px 8px 0;
-    color: var(--forest-900);
-    text-shadow: none;
-    margin: 0;
+    align-self: flex-end;
+    margin-top: 110px;
+    margin-right: 0;
+    margin-bottom: 4px;
+    background: linear-gradient(135deg, rgba(13, 35, 23, 0.76), rgba(13, 35, 23, 0.52));
+    backdrop-filter: blur(10px);
+    padding: 7px 18px 7px 7px;
+    color: var(--surface-white);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.24);
+  }
+
+  .play-ring {
+    width: 44px;
+    height: 44px;
   }
 
   .explore-divider {
-    background-color: rgba(17, 45, 30, 0.25);
+    height: 28px;
+    background-color: rgba(255, 255, 255, 0.35);
+  }
+
+  .explore-label {
+    font-size: 0.9rem;
   }
 
   .about-grid,
-  .contact-grid,
-  .gallery-grid {
+  .contact-grid {
     grid-template-columns: 1fr;
-  }
-
-  .gallery-wide {
-    grid-column: span 1;
+    gap: 32px;
   }
 
   .about-stat-card {
-    position: static;
-    margin-top: 16px;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    margin: -28px 16px 0;
     max-width: none;
   }
 }
 
-@media (max-width: 600px) {
-  .category-dock-wrap {
-    padding: 0 14px;
+/* Mobile Carousel Rails: Prevent vertical stacking for trees, plants, gallery & services */
+@media (max-width: 768px) {
+  .catalog-section,
+  .solutions-section,
+  .about-section,
+  .gallery-section,
+  .contact-section {
+    padding: 64px 0;
   }
 
-  .category-dock,
+  .section-container {
+    padding: 0 20px;
+  }
+
+  .section-header-row {
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+
+  .section-center-header {
+    text-align: left;
+    margin: 0 0 24px;
+  }
+
+  .section-center-header .section-desc {
+    margin: 0;
+  }
+
+  .filter-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .filter-pills::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-pill {
+    flex-shrink: 0;
+  }
+
+  .mobile-swipe-hint {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--forest-700);
+    margin-bottom: 12px;
+  }
+
   .plants-grid,
   .solutions-grid,
-  .form-row {
-    grid-template-columns: 1fr;
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 80%);
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;
+    padding: 4px 20px 14px;
+    margin: 0 -20px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
-  .dock-card::after {
-    display: none !important;
+  .plants-grid::-webkit-scrollbar,
+  .solutions-grid::-webkit-scrollbar,
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
   }
 
-  .dock-card:not(:last-child) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  .plant-card,
+  .solution-card,
+  .gallery-item {
+    scroll-snap-align: start;
+  }
+
+  .gallery-wide {
+    grid-column: auto;
+  }
+
+  .gallery-item {
+    min-height: 240px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-inner {
+    padding: 10px 16px;
+    gap: 10px;
+  }
+
+  .brand {
+    gap: 9px;
+  }
+
+  .brand-logo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .brand-name {
+    font-size: 1.24rem;
+  }
+
+  .brand-sub {
+    font-size: 0.7rem;
+  }
+
+  .header-actions {
+    gap: 8px;
+  }
+
+  .hero-section {
+    padding-top: 68px;
+  }
+
+  .hero-container {
+    padding: 16px 18px 18px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.68rem;
+    margin-bottom: 12px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8.6vw, 2.55rem);
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    font-size: 0.92rem;
+    line-height: 1.52;
+    margin-bottom: 20px;
+  }
+
+  .hero-content {
+    width: 100%;
+  }
+
+  /* Keep primary CTAs cleanly side-by-side */
+  .hero-cta-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .btn-primary-pill,
+  .btn-secondary-pill {
+    min-width: 0;
+    padding: 11px 10px;
+    font-size: clamp(0.73rem, 3.2vw, 0.83rem);
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .btn-primary-pill .btn-icon {
+    display: none;
+  }
+
+  .btn-primary-pill .arrow-icon,
+  .play-outline-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /* Frosted 3-column horizontal trust bar */
+  .hero-trust-strip {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    padding: 11px 10px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    box-shadow: 0 8px 24px rgba(13, 35, 23, 0.08);
   }
 
   .trust-divider {
     display: none;
   }
 
-  .hero-trust-strip {
-    gap: 16px;
+  .trust-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 4px;
+  }
+
+  .trust-icon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .trust-text strong {
+    font-size: 0.78rem;
+  }
+
+  .trust-text span {
+    font-size: 0.67rem;
+  }
+
+  .hero-explore-trigger {
+    margin-top: 130px;
+  }
+
+  /* Keep Bottom Emerald Category Dock as sleek 2x2 grid (NOT 4 stacked rows) */
+  .category-dock-wrap {
+    padding: 0 12px;
+  }
+
+  .category-dock {
+    grid-template-columns: repeat(2, 1fr);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .dock-card {
+    padding: 16px 14px;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .dock-card-body {
+    gap: 7px;
+  }
+
+  .dock-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .dock-text h2 {
+    font-size: 0.96rem;
+  }
+
+  .dock-text p {
+    font-size: 0.7rem;
+  }
+
+  .dock-arrow {
+    width: 24px;
+    height: 24px;
+    margin-top: 2px;
+  }
+
+  .dock-arrow svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .dock-card:nth-child(even)::after {
+    display: none;
+  }
+
+  .dock-card:nth-child(odd)::after {
+    display: block;
+    top: 18%;
+    height: 64%;
+  }
+
+  .dock-card:nth-child(1),
+  .dock-card:nth-child(2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .dock-card:nth-child(3),
+  .dock-card:nth-child(4) {
+    border-bottom: none;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  .contact-form-card {
+    padding: 22px 18px;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
