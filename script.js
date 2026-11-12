@@ -2,7 +2,7 @@
    Aie Saheb Rose Nursery — Storefront, Care Quick-View, WhatsApp & Marathi UI
    ========================================================================== */
 
-const WHATSAPP_NUMBER = "919820045120";
+const WHATSAPP_NUMBER = "917218584150";
 
 const PLANT_CATALOG = [
   {
